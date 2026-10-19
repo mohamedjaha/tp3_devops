@@ -38,3 +38,13 @@ def greeting(name: str = Query(..., description="Name to greet")):
         "hostname": platform.node(),
         "IP": get_local_ip(),
     }
+
+
+@app.post("/divide")
+def divide(
+    a: int = Query(..., description="First number"),
+    b: int = Query(..., description="Second number"),
+):
+    if b == 0:
+        return {"error": "Division by zero is not allowed", "developer": "Dev4"}
+    return {"result a/b=": a / b, "developer": "Dev4"}
