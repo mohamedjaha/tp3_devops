@@ -38,3 +38,11 @@ def greeting(name: str = Query(..., description="Name to greet")):
         "hostname": platform.node(),
         "IP": get_local_ip(),
     }
+
+
+@app.post("/multiply")
+def multiply(
+    a: int = Query(..., description="First number"),
+    b: int = Query(..., description="Second number"),
+):
+    return {"result a*b=": a * b, "developer": "Dev3"}
