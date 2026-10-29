@@ -56,3 +56,8 @@ def divide(
     if b == 0:
         return {"error": "Division by zero is not allowed", "developer": "Dev4"}
     return {"result a/b=": a / b, "developer": "Dev4"}
+
+
+@app.delete("/remove/{id}")
+def remove(id: int):
+    return {"message": f"Item {id} removed", "developer": "Dev5"}
