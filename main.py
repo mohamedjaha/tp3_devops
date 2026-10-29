@@ -61,3 +61,8 @@ def divide(
 @app.delete("/remove/{id}")
 def remove(id: int):
     return {"message": f"Item {id} removed", "developer": "Dev5"}
+
+@app.put("/update/{id}")
+def update(id: int):
+    return {"message": f"Item {id} updated", "developer": "Dev5"}
+    
