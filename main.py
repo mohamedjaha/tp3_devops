@@ -66,3 +66,7 @@ def remove(id: int):
 def update(id: int):
     return {"message": f"Item {id} updated", "developer": "Dev5"}
     
+
+@app.get("/soustraction")
+def soustraction(a: int, b: int):
+    return {"resultat": a - b}
