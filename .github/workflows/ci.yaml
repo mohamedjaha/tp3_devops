@@ -29,3 +29,38 @@ jobs:
         with:
           name: junit-report
           path: report.xml
+  calculate-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Calculer la couverture
+        run: >
+          pytest -v test_main.py --cov=. --cov-report=term-missing
+          --cov-report=xml:coverage.xml --cov-report=html
+          --cov-fail-under=90
+
+      - name: Afficher le résumé dans GitHub
+        if: always()
+        run: |
+          echo "### Couverture de code" >> $GITHUB_STEP_SUMMARY
+          coverage report --format=markdown >> $GITHUB_STEP_SUMMARY
+
+      - name: Sauvegarder les rapports de couverture
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            coverage.xml
+            htmlcov/
