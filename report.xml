@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="0.932" timestamp="2026-11-26T14:03:43.585963+01:00" hostname="DESKTOP-SA0AKB9"><testcase classname="test_main" name="test_soustraction" time="0.016" /></testsuite></testsuites>
