@@ -29,6 +29,7 @@ jobs:
         with:
           name: junit-report
           path: report.xml
+
   calculate-coverage:
     runs-on: ubuntu-latest
     steps:
@@ -42,7 +43,9 @@ jobs:
           cache: pip
 
       - name: Installer les dépendances
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install pytest-cov
 
       - name: Calculer la couverture
         run: >
@@ -54,7 +57,7 @@ jobs:
         if: always()
         run: |
           echo "### Couverture de code" >> $GITHUB_STEP_SUMMARY
-          coverage report --format=markdown >> $GITHUB_STEP_SUMMARY
+          python -m coverage report --format=markdown >> $GITHUB_STEP_SUMMARY || true
 
       - name: Sauvegarder les rapports de couverture
         if: always()
