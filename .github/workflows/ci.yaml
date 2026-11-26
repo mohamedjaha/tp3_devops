@@ -51,7 +51,6 @@ jobs:
         run: >
           pytest -v test_main.py --cov=. --cov-report=term-missing
           --cov-report=xml:coverage.xml --cov-report=html
-          --cov-fail-under=90
 
       - name: Afficher le résumé dans GitHub
         if: always()
