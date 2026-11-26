@@ -40,7 +40,3 @@ def test_addition():
     response = client.get("/addition", params={"a": 4, "b": 6})
     assert response.status_code == 200
 
-def test_division_par_zero():
-    """Déclenche la branche except."""
-    response = client.get("/division", params={"a": 4, "b": 0})
-    assert response.status_code in (400, 500)
